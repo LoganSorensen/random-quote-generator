@@ -22,6 +22,25 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  let randomButton = document.querySelector(".random-btn");
+  let randomSVG = document.querySelector(".fa-sync-alt");
+
+  document.addEventListener("DOMContentLoaded", function () {
+    randomButton = document.querySelector(".random-btn");
+    randomSVG = document.querySelector(".fa-sync-alt");
+
+    // rotates the svg when the random button is clicked
+    randomButton.addEventListener(
+      "click",
+      function () {
+        randomSVG.classList.remove("rotate");
+        void randomButton.offsetWidth;
+        randomSVG.classList.add("rotate");
+      },
+      false
+    );
+  });
+
   useEffect(() => {
     getQuote();
   }, []);
@@ -30,7 +49,12 @@ function App() {
     <div className="App">
       <header>
         <Link to="/">
-          <button className="random-btn" onClick={getQuote}>
+          <button
+            className="random-btn"
+            onClick={() => {
+              getQuote();
+            }}
+          >
             random
             <FontAwesomeIcon icon={faSyncAlt} />
           </button>
